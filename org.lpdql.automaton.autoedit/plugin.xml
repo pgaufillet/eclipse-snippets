@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+         <command
+               commandId="org.lpdql.automaton.autoedit.command"
+               label="Add State to Automaton"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.lpdql.automaton.autoedit.AutoEditHandler"
+            id="org.lpdql.automaton.autoedit.command"
+            name="Add State to Automaton">
+      </command>
+   </extension>
+
+</plugin>
