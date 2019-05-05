@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="editor" version="12.0.0.2017041100">
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" xmlns:validation="http://www.eclipse.org/sirius/description/validation/1.1.0" name="editor" version="12.0.0.2017041100">
   <ownedViewpoints name="VP_Automaton" label="Automaton" modelFileExtension="automaton">
+    <validationSet name="Validation">
+      <ownedRules xsi:type="validation:SemanticValidationRule" name="SVR_1" level="ERROR" message="A State shall always have at least one entering transition." targetClass="automaton::State">
+        <audits auditExpression="aql:self.eContainer().transitions->exists(t: automaton::Transition | t.destination = self)"/>
+      </ownedRules>
+    </validationSet>
     <ownedRepresentations xsi:type="description_1:DiagramDescription" name="Automaton diagram" domainClass="automaton::Automaton" enablePopupBars="true">
       <metamodel href="http://www.lpdql.org/automaton/1.0#/"/>
       <defaultLayer name="Default">
@@ -63,6 +68,14 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
+          <ownedTools xsi:type="tool_1:ToolDescription">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ExternalJavaActionCall" name="JAC1" action="//@ownedViewpoints[name='VP_Automaton']/@ownedRepresentations[name='Automaton%20diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='JA_NewName']"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:ExternalJavaAction" name="JA_NewName" id="org.lpdql.automaton.sirius.editor.newName"/>
         </toolSections>
       </defaultLayer>
     </ownedRepresentations>
